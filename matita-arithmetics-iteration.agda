@@ -9,14 +9,6 @@ iter : (l4-v : Level) -> (H-v : Set l4-v) -> (X---v : (X---v : H-v) -> H-v) -> (
 iter l5-v H-v X---v matita-arithmetics-nat.O a-v = a-v
 iter l5-v H-v X---v (matita-arithmetics-nat.S m-v) a-v = X---v (iter l5-v H-v X---v m-v a-v)
 
-{-
-postulate iter-body : (l4-v : Level) -> (H-v : Set l4-v) -> (X---v : (X---v : H-v) -> H-v) -> (X--1-v : matita-arithmetics-nat.nat) -> (X--2-v : H-v) -> H-v
-
--- postulate rewrite-rule-510 : (l2-v : Level) -> (H-v : Set l2-v) -> (X---v : (X---v : H-v) -> H-v) -> (X--1-v : matita-arithmetics-nat.nat) -> iter l2-v H-v X---v X--1-v ≡ matita-arithmetics-nat.filter-nat l2-v (λ (X--1-v : matita-arithmetics-nat.nat) -> (X--2-v : H-v) -> H-v) (iter-body l2-v H-v X---v) X--1-v
-
-
--- postulate rewrite-rule-511 : (l5-v : Level) -> (H-v : Set l5-v) -> (X---v : (X---v : H-v) -> H-v) -> (X--1-v : matita-arithmetics-nat.nat) -> iter-body l5-v H-v X---v X--1-v ≡ λ (a-v : H-v) -> matita-arithmetics-nat.match-nat l5-v (λ (X--2-v : matita-arithmetics-nat.nat) -> H-v) a-v (λ (m-v : matita-arithmetics-nat.nat) -> X---v (iter l5-v H-v X---v m-v a-v)) X--1-v
--}
 
 le-iter : (g-v : (X---v : matita-arithmetics-nat.nat) -> matita-arithmetics-nat.nat) -> (a-v : matita-arithmetics-nat.nat) -> (X---v : (x-v : matita-arithmetics-nat.nat) -> matita-arithmetics-nat.le x-v (g-v x-v)) -> (i-v : matita-arithmetics-nat.nat) -> matita-arithmetics-nat.le a-v (iter lzero matita-arithmetics-nat.nat g-v i-v a-v)
 le-iter = λ (g-v : (X---v : matita-arithmetics-nat.nat) -> matita-arithmetics-nat.nat) -> λ (a-v : matita-arithmetics-nat.nat) -> λ (leg-v : (x-v : matita-arithmetics-nat.nat) -> matita-arithmetics-nat.le x-v (g-v x-v)) -> λ (i-v : matita-arithmetics-nat.nat) -> matita-arithmetics-nat.nat-ind lzero (λ (X-x-365-v : matita-arithmetics-nat.nat) -> matita-arithmetics-nat.le a-v (iter lzero matita-arithmetics-nat.nat g-v X-x-365-v a-v)) (matita-arithmetics-nat.le-n a-v) (λ (n-v : matita-arithmetics-nat.nat) -> λ (Hind-v : matita-arithmetics-nat.le a-v (iter lzero matita-arithmetics-nat.nat g-v n-v a-v)) -> matita-arithmetics-nat.transitive-le a-v (iter lzero matita-arithmetics-nat.nat g-v n-v a-v) (iter lzero matita-arithmetics-nat.nat g-v (matita-arithmetics-nat.S n-v) a-v) Hind-v (leg-v (iter lzero matita-arithmetics-nat.nat g-v n-v a-v))) i-v

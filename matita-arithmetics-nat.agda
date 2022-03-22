@@ -100,30 +100,6 @@ filter-nat : (return-sort-v : Level) -> (return-type-v : (z-v : nat) -> Set retu
 filter-nat return-sort-v return-type-v return-v O = return-v O
 filter-nat return-sort-v return-type-v return-v (S X---v) = return-v (S X---v)
 
-{-
-plus : (X---v : nat) -> (X--1-v : nat) -> nat
-plus-body : (X---v : nat) -> (X--1-v : nat) -> nat
-
-{-# TERMINATING #-}
-plus X---v = filter-nat lzero (λ (X---v : nat) -> (X--1-v : nat) -> nat) plus-body X---v
-plus-body X---v = λ (m-v : nat) -> match-nat lzero (λ (X--1-v : nat) -> nat) m-v (λ (p-v : nat) -> S (plus p-v m-v)) X---v
-
-
-times : (X---v : nat) -> (X--1-v : nat) -> nat
-times-body : (X---v : nat) -> (X--1-v : nat) -> nat
-
-{-# TERMINATING #-}
-times X---v = filter-nat lzero (λ (X---v : nat) -> (X--1-v : nat) -> nat) times-body X---v
-times-body X---v = λ (m-v : nat) -> match-nat lzero (λ (X--1-v : nat) -> nat) O (λ (p-v : nat) -> plus m-v (times p-v m-v)) X---v
-
-
-minus : (X---v : nat) -> (X--1-v : nat) -> nat
-minus-body : (X---v : nat) -> (X--1-v : nat) -> nat
-
-{-# TERMINATING #-}
-minus X---v = filter-nat lzero (λ (X---v : nat) -> (X--1-v : nat) -> nat) minus-body X---v
-minus-body X---v = λ (m-v : nat) -> match-nat lzero (λ (X--1-v : nat) -> nat) O (λ (p-v : nat) -> match-nat lzero (λ (X--1-v : nat) -> nat) (S p-v) (λ (q-v : nat) -> minus p-v q-v) m-v) X---v
--}
 plus : (X---v : nat) -> (X--1-v : nat) -> nat
 plus O m = m
 plus (S x) m = S (plus x m)
@@ -602,14 +578,7 @@ minus-plus-minus-l = λ (x-v : nat) -> λ (y-v : nat) -> λ (z-v : nat) -> λ (a
 
 le-fwd-plus-plus-ge : (m1-v : nat) -> (m2-v : nat) -> (X---v : le m2-v m1-v) -> (n1-v : nat) -> (n2-v : nat) -> (X--1-v : le (plus m1-v n1-v) (plus m2-v n2-v)) -> le n1-v n2-v
 le-fwd-plus-plus-ge = λ (m1-v : nat) -> λ (m2-v : nat) -> λ (H-v : le m2-v m1-v) -> λ (n1-v : nat) -> λ (n2-v : nat) -> matita-basics-logic.eq-ind-r lzero lzero nat (plus n1-v m1-v) (λ (x-v : nat) -> λ (X---v : matita-basics-logic.eq lzero nat x-v (plus n1-v m1-v)) -> (X--1-v : le x-v (plus m2-v n2-v)) -> le n1-v n2-v) (λ (H0-v : le (plus n1-v m1-v) (plus m2-v n2-v)) -> matita-basics-logic.And-ind lzero lzero lzero (le n1-v (minus (plus m2-v n2-v) m1-v)) (le m1-v (plus m2-v n2-v)) (λ (X-x-118-v : matita-basics-logic.And lzero lzero (le n1-v (minus (plus m2-v n2-v) m1-v)) (le m1-v (plus m2-v n2-v))) -> le n1-v n2-v) (matita-basics-logic.eq-ind-r lzero lzero nat (plus n2-v m2-v) (λ (x-v : nat) -> λ (X---v : matita-basics-logic.eq lzero nat x-v (plus n2-v m2-v)) -> (X-x-120-v : le n1-v (minus x-v m1-v)) -> (X-x-119-v : le m1-v x-v) -> le n1-v n2-v) (matita-basics-logic.eq-ind lzero lzero nat (minus n2-v (minus m1-v m2-v)) (λ (x-1-v : nat) -> λ (X-x-2-v : matita-basics-logic.eq lzero nat (minus n2-v (minus m1-v m2-v)) x-1-v) -> (X-x-120-v : le n1-v x-1-v) -> (X-x-119-v : le m1-v (plus n2-v m2-v)) -> le n1-v n2-v) (λ (H1-v : le n1-v (minus n2-v (minus m1-v m2-v))) -> λ (X---v : le m1-v (plus n2-v m2-v)) -> transitive-le n1-v (minus n2-v (minus m1-v m2-v)) n2-v H1-v (minus-le n2-v (minus m1-v m2-v))) (minus (plus n2-v m2-v) m1-v) (minus-le-minus-minus-comm m1-v m2-v n2-v H-v)) (plus m2-v n2-v) (commutative-plus m2-v n2-v)) (le-inv-plus-l n1-v m1-v (plus m2-v n2-v) H0-v)) (plus m1-v n1-v) (commutative-plus m1-v n1-v)
-{-
-{-# TERMINATING #-}
-eqb : (X---v : nat) -> (X--1-v : nat) -> matita-basics-bool.bool
-eqb-body : (X---v : nat) -> (X--1-v : nat) -> matita-basics-bool.bool
 
-eqb X---v = filter-nat lzero (λ (X---v : nat) -> (X--1-v : nat) -> matita-basics-bool.bool) eqb-body X---v
-eqb-body X---v = λ (m-v : nat) -> match-nat lzero (λ (X--1-v : nat) -> matita-basics-bool.bool) (match-nat lzero (λ (X--1-v : nat) -> matita-basics-bool.bool) matita-basics-bool.true (λ (q-v : nat) -> matita-basics-bool.false) m-v) (λ (p-v : nat) -> match-nat lzero (λ (X--1-v : nat) -> matita-basics-bool.bool) matita-basics-bool.false (λ (q-v : nat) -> eqb p-v q-v) m-v) X---v
--}
 eqb : (X---v : nat) -> (X--1-v : nat) -> matita-basics-bool.bool
 eqb O y = match-nat lzero (λ (X--1-v : nat) -> matita-basics-bool.bool) matita-basics-bool.true (λ (q-v : nat) -> matita-basics-bool.false) y
 eqb (S x) y = match-nat lzero (λ (X--1-v : nat) -> matita-basics-bool.bool) matita-basics-bool.false (λ (q-v : nat) -> eqb x q-v) y
@@ -633,13 +602,6 @@ eq-to-eqb-true = λ (n-v : nat) -> λ (m-v : nat) -> λ (auto-v : matita-basics-
 not-eq-to-eqb-false : (n-v : nat) -> (m-v : nat) -> (X---v : matita-basics-logic.Not lzero (matita-basics-logic.eq lzero nat n-v m-v)) -> matita-basics-logic.eq lzero matita-basics-bool.bool (eqb n-v m-v) matita-basics-bool.false
 not-eq-to-eqb-false = λ (n-v : nat) -> λ (m-v : nat) -> λ (noteq-v : matita-basics-logic.Not lzero (matita-basics-logic.eq lzero nat n-v m-v)) -> eqb-elim lzero n-v m-v (λ (X---v : matita-basics-bool.bool) -> matita-basics-logic.eq lzero matita-basics-bool.bool X---v matita-basics-bool.false) (λ (Heq-v : matita-basics-logic.eq lzero nat n-v m-v) -> matita-basics-logic.False-ind lzero lzero (λ (X-x-66-v : matita-basics-logic.False lzero) -> matita-basics-logic.eq lzero matita-basics-bool.bool matita-basics-bool.true matita-basics-bool.false) (matita-basics-logic.absurd lzero (matita-basics-logic.eq lzero nat n-v m-v) (matita-basics-logic.rewrite-l lzero lzero nat n-v (λ (X---v : nat) -> matita-basics-logic.eq lzero nat n-v X---v) (matita-basics-logic.refl lzero nat n-v) m-v Heq-v) noteq-v)) (λ (auto-v : matita-basics-logic.Not lzero (matita-basics-logic.eq lzero nat n-v m-v)) -> matita-basics-logic.refl lzero matita-basics-bool.bool matita-basics-bool.false)
 
-{-
-leb : (X---v : nat) -> (X--1-v : nat) -> matita-basics-bool.bool
-leb-body : (X---v : nat) -> (X--1-v : nat) -> matita-basics-bool.bool
-{-# TERMINATING #-}
-leb X---v = filter-nat lzero (λ (X---v : nat) -> (X--1-v : nat) -> matita-basics-bool.bool) leb-body X---v
-leb-body X---v = λ (m-v : nat) -> match-nat lzero (λ (X--1-v : nat) -> matita-basics-bool.bool) matita-basics-bool.true (λ (p-v : nat) -> match-nat lzero (λ (X--1-v : nat) -> matita-basics-bool.bool) matita-basics-bool.false (λ (q-v : nat) -> leb p-v q-v) m-v) X---v
--}
 
 leb : (X---v : nat) -> (X--1-v : nat) -> matita-basics-bool.bool
 leb O _ = matita-basics-bool.true

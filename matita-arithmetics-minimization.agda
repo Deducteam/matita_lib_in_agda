@@ -8,15 +8,6 @@ max' matita-arithmetics-nat.O f d = d
 max' (matita-arithmetics-nat.S j) f d = matita-basics-bool.match-bool lzero (λ (X--1-v : matita-basics-bool.bool) -> matita-arithmetics-nat.nat) j (max' j f d) (f j)
 
 
-{-
-postulate max'-body : (X---v : matita-arithmetics-nat.nat) -> (X--1-v : (X--1-v : matita-arithmetics-nat.nat) -> matita-basics-bool.bool) -> (X--2-v : matita-arithmetics-nat.nat) -> matita-arithmetics-nat.nat
-
--- postulate rewrite-rule-166 : (X---v : matita-arithmetics-nat.nat) -> max' X---v ≡ matita-arithmetics-nat.filter-nat lzero (λ (X---v : matita-arithmetics-nat.nat) -> (X--1-v : (X--1-v : matita-arithmetics-nat.nat) -> matita-basics-bool.bool) -> (X--2-v : matita-arithmetics-nat.nat) -> matita-arithmetics-nat.nat) max'-body X---v
-
-
--- postulate rewrite-rule-167 : (X---v : matita-arithmetics-nat.nat) -> max'-body X---v ≡ λ (f-v : (X--1-v : matita-arithmetics-nat.nat) -> matita-basics-bool.bool) -> λ (d-v : matita-arithmetics-nat.nat) -> matita-arithmetics-nat.match-nat lzero (λ (X--1-v : matita-arithmetics-nat.nat) -> matita-arithmetics-nat.nat) d-v (λ (j-v : matita-arithmetics-nat.nat) -> matita-basics-bool.match-bool lzero (λ (X--1-v : matita-basics-bool.bool) -> matita-arithmetics-nat.nat) j-v (max' j-v f-v d-v) (f-v j-v)) X---v
--}
-
 max : (X-n-v : matita-arithmetics-nat.nat) -> (X-f-v : (X---v : matita-arithmetics-nat.nat) -> matita-basics-bool.bool) -> matita-arithmetics-nat.nat
 max = λ (n-v : matita-arithmetics-nat.nat) -> λ (f-v : (X---v : matita-arithmetics-nat.nat) -> matita-basics-bool.bool) -> max' n-v f-v matita-arithmetics-nat.O
 
@@ -114,14 +105,6 @@ min : (X---v : matita-arithmetics-nat.nat) -> (X--1-v : matita-arithmetics-nat.n
 min matita-arithmetics-nat.O b f = b
 min (matita-arithmetics-nat.S p) b f = matita-basics-bool.match-bool lzero (λ (X--1-v : matita-basics-bool.bool) -> matita-arithmetics-nat.nat) b (min p (matita-arithmetics-nat.S b) f) (f b)
 
-{-
-postulate min-body : (X---v : matita-arithmetics-nat.nat) -> (X--1-v : matita-arithmetics-nat.nat) -> (X--2-v : (X--2-v : matita-arithmetics-nat.nat) -> matita-basics-bool.bool) -> matita-arithmetics-nat.nat
-
--- postulate rewrite-rule-174 : (X---v : matita-arithmetics-nat.nat) -> min X---v ≡ matita-arithmetics-nat.filter-nat lzero (λ (X---v : matita-arithmetics-nat.nat) -> (X--1-v : matita-arithmetics-nat.nat) -> (X--2-v : (X--2-v : matita-arithmetics-nat.nat) -> matita-basics-bool.bool) -> matita-arithmetics-nat.nat) min-body X---v
-
-
--- postulate rewrite-rule-175 : (X---v : matita-arithmetics-nat.nat) -> min-body X---v ≡ λ (b-v : matita-arithmetics-nat.nat) -> λ (f-v : (X--1-v : matita-arithmetics-nat.nat) -> matita-basics-bool.bool) -> matita-arithmetics-nat.match-nat lzero (λ (X--1-v : matita-arithmetics-nat.nat) -> matita-arithmetics-nat.nat) b-v (λ (p-v : matita-arithmetics-nat.nat) -> matita-basics-bool.match-bool lzero (λ (X--1-v : matita-basics-bool.bool) -> matita-arithmetics-nat.nat) b-v (min p-v (matita-arithmetics-nat.S b-v) f-v) (f-v b-v)) X---v
--}
 
 min0 : (X-n-v : matita-arithmetics-nat.nat) -> (X-f-v : (X---v : matita-arithmetics-nat.nat) -> matita-basics-bool.bool) -> matita-arithmetics-nat.nat
 min0 = λ (n-v : matita-arithmetics-nat.nat) -> λ (f-v : (X---v : matita-arithmetics-nat.nat) -> matita-basics-bool.bool) -> min n-v matita-arithmetics-nat.O f-v

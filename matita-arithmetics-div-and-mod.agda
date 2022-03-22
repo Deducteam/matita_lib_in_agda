@@ -17,20 +17,6 @@ div-aux : matita-arithmetics-nat.nat -> matita-arithmetics-nat.nat -> matita-ari
 div-aux matita-arithmetics-nat.O y z = matita-arithmetics-nat.O
 div-aux (matita-arithmetics-nat.S x) y z = matita-basics-bool.match-bool lzero (λ (X---v : matita-basics-bool.bool) -> matita-arithmetics-nat.nat) matita-arithmetics-nat.O (matita-arithmetics-nat.S (div-aux x (matita-arithmetics-nat.minus y (matita-arithmetics-nat.S z)) z)) (matita-arithmetics-nat.leb y z)
 
-{-
-mod-aux : (X-p-v : matita-arithmetics-nat.nat) -> (X-m-v : matita-arithmetics-nat.nat) -> (X-n-v : matita-arithmetics-nat.nat) -> matita-arithmetics-nat.nat
-mod-aux-body : (X-p-v : matita-arithmetics-nat.nat) -> (X-m-v : matita-arithmetics-nat.nat) -> (X-n-v : matita-arithmetics-nat.nat) -> matita-arithmetics-nat.nat
-{-# TERMINATING #-}
-mod-aux X-p-v = matita-arithmetics-nat.filter-nat lzero (λ (X-p-v : matita-arithmetics-nat.nat) -> (X-m-v : matita-arithmetics-nat.nat) -> (X-n-v : matita-arithmetics-nat.nat) -> matita-arithmetics-nat.nat) mod-aux-body X-p-v
-mod-aux-body X-p-v = λ (m-v : matita-arithmetics-nat.nat) -> λ (n-v : matita-arithmetics-nat.nat) -> matita-arithmetics-nat.match-nat lzero (λ (X---v : matita-arithmetics-nat.nat) -> matita-arithmetics-nat.nat) m-v (λ (q-v : matita-arithmetics-nat.nat) -> matita-basics-bool.match-bool lzero (λ (X---v : matita-basics-bool.bool) -> matita-arithmetics-nat.nat) m-v (mod-aux q-v (matita-arithmetics-nat.minus m-v (matita-arithmetics-nat.S n-v)) n-v) (matita-arithmetics-nat.leb m-v n-v)) X-p-v
-
-
-div-aux : (X-p-v : matita-arithmetics-nat.nat) -> (X-m-v : matita-arithmetics-nat.nat) -> (X-n-v : matita-arithmetics-nat.nat) -> matita-arithmetics-nat.nat
-div-aux-body : (X-p-v : matita-arithmetics-nat.nat) -> (X-m-v : matita-arithmetics-nat.nat) -> (X-n-v : matita-arithmetics-nat.nat) -> matita-arithmetics-nat.nat
-{-# TERMINATING #-}
-div-aux X-p-v = matita-arithmetics-nat.filter-nat lzero (λ (X-p-v : matita-arithmetics-nat.nat) -> (X-m-v : matita-arithmetics-nat.nat) -> (X-n-v : matita-arithmetics-nat.nat) -> matita-arithmetics-nat.nat) div-aux-body X-p-v
-div-aux-body X-p-v = λ (m-v : matita-arithmetics-nat.nat) -> λ (n-v : matita-arithmetics-nat.nat) -> matita-arithmetics-nat.match-nat lzero (λ (X---v : matita-arithmetics-nat.nat) -> matita-arithmetics-nat.nat) matita-arithmetics-nat.O (λ (q-v : matita-arithmetics-nat.nat) -> matita-basics-bool.match-bool lzero (λ (X---v : matita-basics-bool.bool) -> matita-arithmetics-nat.nat) matita-arithmetics-nat.O (matita-arithmetics-nat.S (div-aux q-v (matita-arithmetics-nat.minus m-v (matita-arithmetics-nat.S n-v)) n-v)) (matita-arithmetics-nat.leb m-v n-v)) X-p-v
--}
 
 div : (X---v : matita-arithmetics-nat.nat) -> (X--1-v : matita-arithmetics-nat.nat) -> matita-arithmetics-nat.nat
 div = λ (n-v : matita-arithmetics-nat.nat) -> λ (m-v : matita-arithmetics-nat.nat) -> matita-arithmetics-nat.match-nat lzero (λ (X---v : matita-arithmetics-nat.nat) -> matita-arithmetics-nat.nat) (matita-arithmetics-nat.S n-v) (λ (p-v : matita-arithmetics-nat.nat) -> div-aux n-v n-v p-v) m-v

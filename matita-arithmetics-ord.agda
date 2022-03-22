@@ -8,38 +8,11 @@ import matita-basics-logic
 import matita-arithmetics-div-and-mod
 import matita-basics-types
 import matita-arithmetics-nat
-{-
-
-postulate p-ord-aux : (X---v : matita-arithmetics-nat.nat) -> (X--1-v : matita-arithmetics-nat.nat) -> (X--2-v : matita-arithmetics-nat.nat) -> matita-basics-types.Prod lzero lzero matita-arithmetics-nat.nat matita-arithmetics-nat.nat
-
-postulate p-ord-aux-body : (X---v : matita-arithmetics-nat.nat) -> (X--1-v : matita-arithmetics-nat.nat) -> (X--2-v : matita-arithmetics-nat.nat) -> matita-basics-types.Prod lzero lzero matita-arithmetics-nat.nat matita-arithmetics-nat.nat
-
--- postulate rewrite-rule-420 : (X---v : matita-arithmetics-nat.nat) -> p-ord-aux X---v ≡ matita-arithmetics-nat.filter-nat lzero (λ (X---v : matita-arithmetics-nat.nat) -> (X--1-v : matita-arithmetics-nat.nat) -> (X--2-v : matita-arithmetics-nat.nat) -> matita-basics-types.Prod lzero lzero matita-arithmetics-nat.nat matita-arithmetics-nat.nat) p-ord-aux-body X---v
-
-
--- postulate rewrite-rule-421 : (X---v : matita-arithmetics-nat.nat) -> p-ord-aux-body X---v ≡ λ (n-v : matita-arithmetics-nat.nat) -> λ (m-v : matita-arithmetics-nat.nat) -> matita-arithmetics-nat.match-nat lzero (λ (X--1-v : matita-arithmetics-nat.nat) -> matita-basics-types.Prod lzero lzero matita-arithmetics-nat.nat matita-arithmetics-nat.nat) (matita-arithmetics-nat.match-nat lzero (λ (X--1-v : matita-arithmetics-nat.nat) -> matita-basics-types.Prod lzero lzero matita-arithmetics-nat.nat matita-arithmetics-nat.nat) (matita-basics-types.mk-Prod lzero lzero matita-arithmetics-nat.nat matita-arithmetics-nat.nat matita-arithmetics-nat.O n-v) (λ (p0-v : matita-arithmetics-nat.nat) -> matita-basics-types.match-Prod lzero lzero matita-arithmetics-nat.nat matita-arithmetics-nat.nat lzero (λ (X--1-v : matita-basics-types.Prod lzero lzero matita-arithmetics-nat.nat matita-arithmetics-nat.nat) -> matita-basics-types.Prod lzero lzero matita-arithmetics-nat.nat matita-arithmetics-nat.nat) (λ (q-v : matita-arithmetics-nat.nat) -> λ (r-v : matita-arithmetics-nat.nat) -> matita-basics-types.mk-Prod lzero lzero matita-arithmetics-nat.nat matita-arithmetics-nat.nat (matita-arithmetics-nat.S q-v) r-v) (p-ord-aux p0-v (matita-arithmetics-div-and-mod.div n-v m-v) m-v)) X---v) (λ (a-v : matita-arithmetics-nat.nat) -> matita-basics-types.mk-Prod lzero lzero matita-arithmetics-nat.nat matita-arithmetics-nat.nat matita-arithmetics-nat.O n-v) (matita-arithmetics-div-and-mod.mod n-v m-v)
--}
 
 p-ord-aux : (X---v : matita-arithmetics-nat.nat) -> (X--1-v : matita-arithmetics-nat.nat) -> (X--2-v : matita-arithmetics-nat.nat) -> matita-basics-types.Prod lzero lzero matita-arithmetics-nat.nat matita-arithmetics-nat.nat
 p-ord-aux matita-arithmetics-nat.O n m = matita-arithmetics-nat.match-nat lzero (λ (X--1-v : matita-arithmetics-nat.nat) -> matita-basics-types.Prod lzero lzero matita-arithmetics-nat.nat matita-arithmetics-nat.nat) (matita-basics-types.mk-Prod lzero lzero matita-arithmetics-nat.nat matita-arithmetics-nat.nat matita-arithmetics-nat.O n) (λ (a-v : matita-arithmetics-nat.nat) -> matita-basics-types.mk-Prod lzero lzero matita-arithmetics-nat.nat matita-arithmetics-nat.nat matita-arithmetics-nat.O n) (matita-arithmetics-div-and-mod.mod n m)
 p-ord-aux (matita-arithmetics-nat.S p) n m = matita-arithmetics-nat.match-nat lzero (λ (X--1-v : matita-arithmetics-nat.nat) -> matita-basics-types.Prod lzero lzero matita-arithmetics-nat.nat matita-arithmetics-nat.nat) ( matita-basics-types.match-Prod lzero lzero matita-arithmetics-nat.nat matita-arithmetics-nat.nat lzero (λ (X--1-v : matita-basics-types.Prod lzero lzero matita-arithmetics-nat.nat matita-arithmetics-nat.nat) -> matita-basics-types.Prod lzero lzero matita-arithmetics-nat.nat matita-arithmetics-nat.nat) (λ (q-v : matita-arithmetics-nat.nat) -> λ (r-v : matita-arithmetics-nat.nat) -> matita-basics-types.mk-Prod lzero lzero matita-arithmetics-nat.nat matita-arithmetics-nat.nat (matita-arithmetics-nat.S q-v) r-v) (p-ord-aux p (matita-arithmetics-div-and-mod.div n m) m)) (λ (a-v : matita-arithmetics-nat.nat) -> matita-basics-types.mk-Prod lzero lzero matita-arithmetics-nat.nat matita-arithmetics-nat.nat matita-arithmetics-nat.O n) (matita-arithmetics-div-and-mod.mod n m)
 
-
-
-
-{-
-
-matita-arithmetics-nat.match-nat
-  lzero
-  (λ (X--1-v : matita-arithmetics-nat.nat) -> matita-basics-types.Prod lzero lzero matita-arithmetics-nat.nat matita-arithmetics-nat.nat)
-  (matita-arithmetics-nat.match-nat lzero
-    (λ (X--1-v : matita-arithmetics-nat.nat) -> matita-basics-types.Prod lzero lzero matita-arithmetics-nat.nat matita-arithmetics-nat.nat)
-    (matita-basics-types.mk-Prod lzero lzero matita-arithmetics-nat.nat matita-arithmetics-nat.nat matita-arithmetics-nat.O n-v)
-    (λ (p0-v : matita-arithmetics-nat.nat) -> matita-basics-types.match-Prod lzero lzero matita-arithmetics-nat.nat matita-arithmetics-nat.nat lzero (λ (X--1-v : matita-basics-types.Prod lzero lzero matita-arithmetics-nat.nat matita-arithmetics-nat.nat) -> matita-basics-types.Prod lzero lzero matita-arithmetics-nat.nat matita-arithmetics-nat.nat) (λ (q-v : matita-arithmetics-nat.nat) -> λ (r-v : matita-arithmetics-nat.nat) -> matita-basics-types.mk-Prod lzero lzero matita-arithmetics-nat.nat matita-arithmetics-nat.nat (matita-arithmetics-nat.S q-v) r-v) (p-ord-aux p0-v (matita-arithmetics-div-and-mod.div n-v m-v) m-v))
-    X---v)
-  (λ (a-v : matita-arithmetics-nat.nat) -> matita-basics-types.mk-Prod lzero lzero matita-arithmetics-nat.nat matita-arithmetics-nat.nat matita-arithmetics-nat.O n-v)
-  (matita-arithmetics-div-and-mod.mod n-v m-v)
--}
 
 p-ord : (X-n-v : matita-arithmetics-nat.nat) -> (X-m-v : matita-arithmetics-nat.nat) -> matita-basics-types.Prod lzero lzero matita-arithmetics-nat.nat matita-arithmetics-nat.nat
 p-ord = λ (n-v : matita-arithmetics-nat.nat) -> λ (m-v : matita-arithmetics-nat.nat) -> p-ord-aux n-v n-v m-v

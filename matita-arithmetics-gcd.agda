@@ -10,15 +10,6 @@ gcd-aux : (X-p-v : matita-arithmetics-nat.nat) -> (X-m-v : matita-arithmetics-na
 gcd-aux matita-arithmetics-nat.O m n = m
 gcd-aux (matita-arithmetics-nat.S q) m n = matita-basics-bool.match-bool lzero (λ (X---v : matita-basics-bool.bool) -> matita-arithmetics-nat.nat) n (gcd-aux q n (matita-arithmetics-div-and-mod.mod m n)) (matita-arithmetics-primes.dividesb n m)
 
-{-
-postulate gcd-aux-body : (X-p-v : matita-arithmetics-nat.nat) -> (X-m-v : matita-arithmetics-nat.nat) -> (X-n-v : matita-arithmetics-nat.nat) -> matita-arithmetics-nat.nat
-
--- postulate rewrite-rule-188 : (X-p-v : matita-arithmetics-nat.nat) -> gcd-aux X-p-v ≡ matita-arithmetics-nat.filter-nat lzero (λ (X-p-v : matita-arithmetics-nat.nat) -> (X-m-v : matita-arithmetics-nat.nat) -> (X-n-v : matita-arithmetics-nat.nat) -> matita-arithmetics-nat.nat) gcd-aux-body X-p-v
-
-
--- postulate rewrite-rule-189 : (X-p-v : matita-arithmetics-nat.nat) -> gcd-aux-body X-p-v ≡ λ (m-v : matita-arithmetics-nat.nat) -> λ (n-v : matita-arithmetics-nat.nat) -> matita-arithmetics-nat.match-nat lzero (λ (X---v : matita-arithmetics-nat.nat) -> matita-arithmetics-nat.nat) m-v (λ (q-v : matita-arithmetics-nat.nat) -> matita-basics-bool.match-bool lzero (λ (X---v : matita-basics-bool.bool) -> matita-arithmetics-nat.nat) n-v (gcd-aux q-v n-v (matita-arithmetics-div-and-mod.mod m-v n-v)) (matita-arithmetics-primes.dividesb n-v m-v)) X-p-v
--}
-
 
 gcd : (X---v : matita-arithmetics-nat.nat) -> (X--1-v : matita-arithmetics-nat.nat) -> matita-arithmetics-nat.nat
 gcd = λ (n-v : matita-arithmetics-nat.nat) -> λ (m-v : matita-arithmetics-nat.nat) -> matita-basics-bool.match-bool lzero (λ (X---v : matita-basics-bool.bool) -> matita-arithmetics-nat.nat) (gcd-aux n-v m-v n-v) (gcd-aux m-v n-v m-v) (matita-arithmetics-nat.leb n-v m-v)

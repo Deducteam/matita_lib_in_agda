@@ -258,18 +258,6 @@ let-upper-bound = λ (X---v : matita-arithmetics-nat.nat) -> λ (p-v : matita-ar
 let-previous-prime = λ (X---v : matita-arithmetics-nat.nat) -> λ (p-v : matita-arithmetics-nat.nat) -> nth-prime p-v
 nth-prime matita-arithmetics-nat.O = (matita-arithmetics-nat.S (matita-arithmetics-nat.S matita-arithmetics-nat.O))
 nth-prime (matita-arithmetics-nat.S p) =  matita-arithmetics-minimization.min (let-upper-bound (matita-arithmetics-nat.S p) p) (matita-arithmetics-nat.S (let-previous-prime (matita-arithmetics-nat.S p) p)) primeb
-{-
-postulate nth-prime-body : (X---v : matita-arithmetics-nat.nat) -> matita-arithmetics-nat.nat
-
- matita-arithmetics-nat.match-nat lzero (λ (X--1-v : matita-arithmetics-nat.nat) -> matita-arithmetics-nat.nat) (matita-arithmetics-nat.S (matita-arithmetics-nat.S matita-arithmetics-nat.O)) (λ (p-v : matita-arithmetics-nat.nat) -> matita-arithmetics-minimization.min (let-upper-bound X---v p-v) (matita-arithmetics-nat.S (let-previous-prime X---v p-v)) primeb) X---v
--}
-
-{-
--- postulate rewrite-rule-186 : (X---v : matita-arithmetics-nat.nat) -> nth-prime X---v ≡ matita-arithmetics-nat.filter-nat lzero (λ (X---v : matita-arithmetics-nat.nat) -> matita-arithmetics-nat.nat) nth-prime-body X---v
-
-
--- postulate rewrite-rule-187 : (X---v : matita-arithmetics-nat.nat) -> nth-prime-body X---v ≡ matita-arithmetics-nat.match-nat lzero (λ (X--1-v : matita-arithmetics-nat.nat) -> matita-arithmetics-nat.nat) (matita-arithmetics-nat.S (matita-arithmetics-nat.S matita-arithmetics-nat.O)) (λ (p-v : matita-arithmetics-nat.nat) -> matita-arithmetics-minimization.min (let-upper-bound X---v p-v) (matita-arithmetics-nat.S (let-previous-prime X---v p-v)) primeb) X---v
--}
 
 let-previous-prime1 : (n-v : matita-arithmetics-nat.nat) -> matita-arithmetics-nat.nat
 let-previous-prime1 = λ (n-v : matita-arithmetics-nat.nat) -> nth-prime n-v
